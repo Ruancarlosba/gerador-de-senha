@@ -1,11 +1,30 @@
 
       const inputEl = document.querySelector("#password")
+      const upperCaseCheckEl = document.querySelector("#Uppercase-check")
+      const numberCaseCheckEl = document.querySelector("#Number-check")
+      const symbolCaseCheckEl = document.querySelector("#Symbol-check")
 
       let passwordLength = 16
 
       function generatePassword() {
-        const chars =
-          "abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789?!@&*()[]"
+        let chars =
+          "abcdefghjkmnpqrstuvwxyz"
+
+          const upperCaseChars = "ABCDEFGHJKLMNPQRSTUVWXYZ"
+          const numberChars = "123456789"
+          const symbolChars = "?!@&*()[]"
+
+          if(upperCaseCheckEl.checked) {
+            chars+= upperCaseChars
+          }
+          
+          if(numberCaseCheckEl.checked) {
+            chars+= numberChars
+          }
+
+          if(symbolCaseCheckEl.checked) {
+            chars+= symbolChars
+          }
 
         let password = ""
 
@@ -26,6 +45,10 @@
         passwordLength = passwordLengthEl.value
         generatePassword()
       })
+
+      upperCaseCheckEl.addEventListener("click", generatePassword)
+      numberCaseCheckEl.addEventListener("click", generatePassword)
+      symbolCaseCheckEl.addEventListener("click", generatePassword)
 
       document.querySelector("#copy-1").addEventListener("click", copy)
       document.querySelector("#copy-2").addEventListener("click", copy)
